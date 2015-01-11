@@ -45,6 +45,7 @@ exports.configure = function (api, app, config, cb) {
 
 exports.build = function (api, app, config, cb) {
   logger = api.logging.get('build-browser');
+  resourceLogger = api.logging.get('resource-list');
 
   // filenames starting with build/debug are already in the build directory
   // otherwise they need to be inline-cached into the HTML or copied into the build directory
@@ -53,7 +54,7 @@ exports.build = function (api, app, config, cb) {
   var isMobile = (config.target != 'browser-desktop');
   var CSSFontList = require('./fonts').CSSFontList;
   var InlineCache = require('../common/inlineCache').InlineCache;
-  var resourceList = new (require('../common/resources').ResourceList);
+  var resourceList = new (require('../common/resources').ResourceList)(resourceLogger);
   var JSConfig = require('../common/jsConfig').JSConfig;
   var JSCompiler = require('../common/jsCompiler').JSCompiler;
 

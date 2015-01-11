@@ -83,7 +83,7 @@ exports.getFiles = function (api, app, config, cb) {
       if (!Array.isArray(directories)) { return; }
 
       directories.forEach(function (directory) {
-        console.log(module, directory);
+        logger.log(module, directory);
         resourceDirectories.push({
           src: directory.src,
           target: path.join('addons', module.name, directory.target)

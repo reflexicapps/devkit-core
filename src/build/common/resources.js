@@ -18,8 +18,9 @@ var Resource = Class(function () {
 });
 
 exports.ResourceList = Class(function () {
-  this.init = function () {
+  this.init = function (logger) {
     this._resources = [];
+    this._logger = logger || console;
   }
 
   this.add = function (opts) {
@@ -27,7 +28,7 @@ exports.ResourceList = Class(function () {
   }
 
   this.write = function (targetDirectory, appPath, cb) {
-    new Writer(this._resources.slice(0), targetDirectory, appPath)
+    new Writer(this._resources.slice(0), targetDirectory, appPath, this._logger)
       .write(cb);
   }
 
@@ -65,10 +66,11 @@ exports.ResourceList = Class(function () {
 });
 
 var Writer = Class(function () {
-  this.init = function (resources, targetDirectory, appPath) {
+  this.init = function (resources, targetDirectory, appPath, logger) {
     this._resources = resources;
     this._targetDirectory = targetDirectory;
     this._appPath = appPath;
+    this._logger = logger;
   }
 
   this.write = function (cb) {
@@ -82,12 +84,14 @@ var Writer = Class(function () {
       return this._onFinish();
     }
 
+    var logger = this._logger;
+
     var cb = function (err) {
       if (err) {
-        console.error(err);
+        logger.error(err);
         this._onFinish(err);
       } else {
-        console.log('wrote', res.target);
+        logger.log('wrote', res.target);
         this._writeNext();
       }
     }.bind(this);
@@ -106,7 +110,7 @@ var Writer = Class(function () {
 
         exec(cmd, {cwd: this._appPath}, function (err, stdout, stderr) {
           if (err && err.code != 1) {
-            console.log(JSON.stringify(code));
+            logger.log(JSON.stringify(code));
             cb(new Error('code ' + code + '\n' + stdout + '\n' + stderr));
           } else {
             cb();
