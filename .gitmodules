@@ -12,4 +12,4 @@
 	url = https://github.com/reflexicapps/squill
 [submodule "node_modules/jsio"]
 	path = node_modules/jsio
-	url = https://github.com/gameclosure/js.io
+	url = https://github.com/reflexicapps/js.io
