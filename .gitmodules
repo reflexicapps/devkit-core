@@ -1,15 +1,15 @@
 [submodule "modules/native-android"]
 	path = modules/native-android
-	url = https://github.com/gameclosure/native-android
+	url = https://github.com/reflexicapps/native-android
 [submodule "modules/native-ios"]
 	path = modules/native-ios
 	url = https://github.com/reflexicapps/native-ios
 [submodule "modules/timestep"]
 	path = modules/timestep
-	url = https://github.com/gameclosure/timestep
+	url = https://github.com/reflexicapps/timestep
 [submodule "modules/squill"]
 	path = modules/squill
-	url = https://github.com/gameclosure/squill
+	url = https://github.com/reflexicapps/squill
 [submodule "node_modules/jsio"]
 	path = node_modules/jsio
-	url = https://github.com/gameclosure/js.io
+	url = https://github.com/reflexicapps/js.io
