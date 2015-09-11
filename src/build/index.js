@@ -1,5 +1,5 @@
 var path = require('path');
-//test 12
+//test 1234
 exports.onBeforeBuild = function (app, target, opts, cb) {
 	var appPath = app.paths.root;
 
